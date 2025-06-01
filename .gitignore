@@ -73,3 +73,4 @@ yarn-error.log*
 *.local
 local.* 
 pb_data/
+pocketbase/data
