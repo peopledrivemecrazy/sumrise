@@ -20,25 +20,25 @@
 
 ## Step 2: PocketBase Schema Design
 
-- [ ] Define `raw_emails` collection with fields:
-  - [ ] id (auto UUID)
-  - [ ] text_body (text)
-  - [ ] received_date (date/time)
-  - [ ] status (select: `queued`, `processing`, `failed`, `processed`)
-  - [ ] error_msg (nullable text)
-  - [ ] retry_count (integer, default 0)
-- [ ] Define `transactions` collection with fields:
-  - [ ] id (auto UUID)
-  - [ ] date (timestamp integer)
-  - [ ] amount_cents (integer)
-  - [ ] merchant_name (string)
-  - [ ] card_type (string)
-  - [ ] card_last4 (string)
-  - [ ] category (string, default "Uncategorized")
-  - [ ] location (string, optional)
-  - [ ] raw_email_id (relation to `raw_emails`)
-- [ ] Create migration script or export JSON schema
-- [ ] Verify collections in PocketBase admin UI
+- [x] Define `raw_emails` collection with fields:
+  - [x] id (auto UUID)
+  - [x] text_body (text)
+  - [x] received_date (date/time)
+  - [x] status (select: `queued`, `processing`, `failed`, `processed`)
+  - [x] error_msg (nullable text)
+  - [x] retry_count (integer, default 0)
+- [x] Define `transactions` collection with fields:
+  - [x] id (auto UUID)
+  - [x] date (timestamp integer)
+  - [x] amount_cents (integer)
+  - [x] merchant_name (string)
+  - [x] card_type (string)
+  - [x] card_last4 (string)
+  - [x] category (string, default "Uncategorized")
+  - [x] location (string, optional)
+  - [x] raw_email_id (relation to `raw_emails`)
+- [x] Create migration script or export JSON schema
+- [x] Verify collections in PocketBase admin UI
 
 ---
 
