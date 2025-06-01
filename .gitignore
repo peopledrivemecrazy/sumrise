@@ -72,3 +72,4 @@ yarn-error.log*
 # Optional: Local development files
 *.local
 local.* 
+pb_data/
