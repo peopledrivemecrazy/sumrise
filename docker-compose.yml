@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: sumrise_app
+    volumes:
+      - ./app:/app
+      - ./app/node_modules:/app/node_modules
+    networks:
+      - internal
+    depends_on:
+      - pocketbase
+
+
+  pocketbase: 
+    build:
+      context: ./pocketbase
+      dockerfile: Dockerfile
+    container_name: pocketbase
+    volumes:
+      - ./pocketbase/data:/pb_data
+    networks:
+      - internal
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    ports:
+      - "443:443"
+    volumes:
+      - ./certs:/etc/ssl/certs:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - internal
+    depends_on:
+      - app
+      - pocketbase
+
+networks:
+  internal:
+    driver: bridge
