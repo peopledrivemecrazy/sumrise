@@ -25,6 +25,7 @@ services:
     volumes:
       - ./pocketbase/data:/pb_data
       - ./pocketbase/pb_migrations:/pb/pb_migrations
+      - ./pocketbase/pb_hooks:/pb/pb_hooks
     networks:
       - internal
     env_file:
