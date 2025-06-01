@@ -26,7 +26,7 @@
   - Docker Compose stack includes:  
     - SvelteKit app container  
     - PocketBase container  
-    - Nginx container with local domains (`sumrise.test`, `api.sumrise.test`) and self-signed certs (mkcert or OpenSSL)  
+    - Nginx container with local domains (`sumrise.test`, `pocketbase.test`) and self-signed certs (mkcert or OpenSSL)  
 
 ---
 

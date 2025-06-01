@@ -12,7 +12,7 @@
 - [x] Generate self-signed SSL certificates (mkcert or OpenSSL)
 - [x] Configure nginx with SSL for domains:
   - [x] `sumrise.test` → frontend
-  - [x] `api.sumrise.test` → API backend
+  - [x] `pocketbase.test` → API backend
 - [x] Set up Docker network for internal communication
 - [x] Verify all containers run and communicate correctly
 

@@ -7,7 +7,7 @@
 
   - SvelteKit app container
   - PocketBase container
-  - Nginx reverse proxy container with local domain config (`sumrise.test`, `api.sumrise.test`) and self-signed certs
+  - Nginx reverse proxy container with local domain config (`sumrise.test`, `pocketbase.test`) and self-signed certs
 
 - Configure network and volume mounts for persistence
 - Verify all containers run and communicate internally
@@ -159,7 +159,7 @@ Requirements:
 - Three services:
   1. `sumrise_app`: Runs a SvelteKit app container with Node.js 18, serving on port 5173 internally.
   2. `pocketbase`: Official PocketBase container, storing data persistently in a mounted volume.
-  3. `nginx`: Reverse proxy with SSL termination using self-signed certs, serving `sumrise.test` for frontend and `api.sumrise.test` for API.
+  3. `nginx`: Reverse proxy with SSL termination using self-signed certs, serving `sumrise.test` for frontend and `pocketbase.test` for API.
 
 - Use mkcert or OpenSSL to generate self-signed certificates, mounted into nginx.
 - Network internal communication only; expose ports 80 and 443 via nginx.
