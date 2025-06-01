@@ -13,6 +13,8 @@ services:
       - internal
     depends_on:
       - pocketbase
+    env_file:
+      - .env
 
 
   pocketbase: 
@@ -25,6 +27,8 @@ services:
       - ./pocketbase/pb_migrations:/pb/pb_migrations
     networks:
       - internal
+    env_file:
+      - .env
 
   nginx:
     build:
