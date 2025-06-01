@@ -37,12 +37,16 @@
 		"vite": "^6.3.5"
 	},
 	"optionalDependencies": {
-		"@rollup/rollup-linux-x64-musl": "4.9.5",
-		"@rollup/rollup-linux-arm64-gnu": "4.9.5"
+		"@rollup/rollup-linux-arm64-gnu": "4.9.5",
+		"@rollup/rollup-linux-x64-musl": "4.9.5"
 	},
 	"overrides": {
 		"vite": {
 			"rollup": "npm:@rollup/wasm-node"
 		}
+	},
+	"dependencies": {
+		"@zag-js/accordion": "^1.14.0",
+		"@zag-js/svelte": "^1.14.0"
 	}
 }
