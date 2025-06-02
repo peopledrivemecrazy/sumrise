@@ -39,6 +39,7 @@
   - [x] raw_email_id (relation to `raw_emails`)
 - [x] Create migration script or export JSON schema
 - [x] Verify collections in PocketBase admin UI
+- [x] Add seed data to pocketbase
 
 ---
 
