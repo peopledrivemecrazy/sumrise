@@ -6,6 +6,7 @@
 	let { data, children }: { data: LayoutData; children: Snippet } = $props();
 </script>
 
-<Nav user={data.user} />
-
-{@render children()}
+<main class="mx-auto max-w-screen-lg">
+	<Nav user={data.user} />
+	{@render children()}
+</main>

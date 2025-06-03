@@ -1,5 +1,5 @@
 # Use standard Node.js image for better compatibility
-FROM node:18
+FROM node:20-slim
 
 # Set working directory
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install -g pnpm && pnpm install
 
 # Copy the rest of the app
 COPY . .
@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5173
 
 # Start the dev server with HMR support
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]
+CMD ["pnpm", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]

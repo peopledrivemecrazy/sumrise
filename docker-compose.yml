@@ -8,7 +8,7 @@ services:
     container_name: sumrise_app
     volumes:
       - ./app:/app
-      - ./app/node_modules:/app/node_modules
+      - /app/node_modules
     networks:
       - internal
     depends_on:
