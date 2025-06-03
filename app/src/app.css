@@ -1,9 +1,7 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;400&display=swap');
 
 body {
-	@apply p-4;
-	font-family: 'IBM Plex Mono', monospace;
+	@apply p-4 font-mono;
 }

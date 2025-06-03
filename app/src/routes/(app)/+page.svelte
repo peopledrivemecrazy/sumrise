@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
 	import { formatCurrency, groupBy } from '$lib';
 	import Card from '$lib/client/components/Card.svelte';
-	import Chart from '$lib/client/components/Chart.svelte';
 
 	let { data } = $props();
 </script>
@@ -27,38 +25,28 @@
 		/>
 	</div>
 	<h2>Spendings</h2>
-	{#each Object.entries(groupBy(data.transactions, 'merchant_name')) as [merchant, transactions]}
-		<div>
-			<p>{merchant}</p>
-			<p>
-				{formatCurrency(
-					transactions.reduce((acc, transaction) => acc + transaction.amount_cents, 0)
-				)}
-			</p>
-		</div>
-	{/each}
-	{#if browser}
-		<Chart />
-	{/if}
-	<!-- 
-	<div class="flex flex-col gap-4">
-		{#each data.transactions as transaction}
-			<div class="border-black-2 border p-4">
-				<p>
-					{new Date(transaction.date).toLocaleDateString('en-US', {
-						year: 'numeric',
-						month: 'long',
-						day: 'numeric'
-					})}
-				</p>
-				<p>
-					{Intl.NumberFormat('en-US', { style: 'currency', currency: 'CAD' }).format(
-						transaction.amount_cents / 100
-					)}
-				</p>
+	<div class="flex flex-col gap-2">
+		{#each Object.entries(groupBy(data.transactions, 'merchant_name')) as [merchant, transactions]}
+			<div class="flex items-center gap-2">
+				<p class="text-sm">{merchant}</p>
+
+				<div
+					class="h-full rounded-sm border-r-2 bg-white/20 transition-all duration-300"
+					style="width: {Math.round(
+						(transactions.reduce((acc, transaction) => acc + transaction.amount_cents, 0) /
+							data.transactions.reduce((acc, transaction) => acc + transaction.amount_cents, 0)) *
+							100
+					)}%;"
+				>
+					<p class="text-2xl">
+						{formatCurrency(
+							transactions.reduce((acc, transaction) => acc + transaction.amount_cents, 0)
+						)}
+					</p>
+				</div>
 			</div>
 		{/each}
-	</div> -->
+	</div>
 {:else}
 	<p>Login to see your transactions</p>
 {/if}
