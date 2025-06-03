@@ -47,9 +47,9 @@
 
 ### 3.1 POST `/api/transactions` webhook endpoint
 
-- [ ] Implement SvelteKit POST API route `/api/transactions`
-- [ ] Validate JSON payload (`TextBody`, `Date`)
-- [ ] Connect to PocketBase using environment variable
+- [x] Implement SvelteKit POST API route `/api/transactions`
+- [x] Validate JSON payload (`TextBody`, `Date`)
+- [x] Connect to PocketBase using environment variable
 - [ ] Insert new `raw_emails` record with `queued` status
 - [ ] Return success or validation error responses
 

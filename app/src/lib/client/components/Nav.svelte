@@ -4,7 +4,7 @@
 	let { user } = $props();
 </script>
 
-<div class="border-black-2 flex items-center justify-between border-b">
+<div class="mb-4 flex items-center justify-between">
 	<div>
 		<p>Sumrise</p>
 	</div>
