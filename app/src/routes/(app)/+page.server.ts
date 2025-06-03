@@ -1,6 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { SUPER_ADMIN_PASSWORD } from '$env/static/private';
-import { SUPER_ADMIN_USER } from '$env/static/private';
+import { SUPER_ADMIN_PASSWORD, SUPER_ADMIN_USER } from '$env/static/private';
 import { pb, type Transaction } from '$lib/vendor/pocketbase';
 
 export const load = (async ({ locals }) => {

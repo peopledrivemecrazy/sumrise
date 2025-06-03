@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { formatCurrency, groupBy } from '$lib';
 	import Card from '$lib/client/components/Card.svelte';
-
+	import MonthPicker from '$lib/client/components/MonthPicker.svelte';
 	let { data } = $props();
 </script>
 
 {#if data.transactions}
 	<h1 class="text-2xl font-bold">Spending Analysis</h1>
-	<p class="opacity-75">current month</p>
+	<MonthPicker />
 	<div class="my-4 grid grid-cols-3 gap-4">
 		<Card
 			title="Total Spending"

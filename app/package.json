@@ -47,6 +47,7 @@
 	},
 	"dependencies": {
 		"@zag-js/accordion": "^1.14.0",
+		"@zag-js/date-picker": "^1.14.0",
 		"@zag-js/svelte": "^1.14.0",
 		"mode-watcher": "0.5.1",
 		"pocketbase": "^0.26.0"
