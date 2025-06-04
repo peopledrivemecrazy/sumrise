@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { formatCurrency, groupBy } from '$lib';
+	import { formatCurrency, groupBy, reduceTransactions } from '$lib';
 	import Card from '$lib/client/components/Card.svelte';
 	import MonthPicker from '$lib/client/components/MonthPicker.svelte';
+	import { mode } from 'mode-watcher';
 	let { data } = $props();
 </script>
 
@@ -9,19 +10,11 @@
 	<h1 class="text-2xl font-bold">Spending Analysis</h1>
 	<MonthPicker />
 	<div class="my-4 grid grid-cols-3 gap-4">
-		<Card
-			title="Total Spending"
-			info={formatCurrency(
-				data.transactions.reduce((acc, transaction) => acc + transaction.amount_cents, 0)
-			)}
-		/>
+		<Card title="Total Spending" info={formatCurrency(reduceTransactions(data.transactions))} />
 		<Card title="Transactions" info={data.transactions.length} />
 		<Card
 			title="Average transaction"
-			info={formatCurrency(
-				data.transactions.reduce((acc, transaction) => acc + transaction.amount_cents, 0) /
-					data.transactions.length
-			)}
+			info={formatCurrency(reduceTransactions(data.transactions) / data.transactions.length)}
 		/>
 	</div>
 	<h2>Spendings</h2>
@@ -31,17 +24,13 @@
 				<p class="text-sm">{merchant}</p>
 
 				<div
-					class="h-full rounded-sm border-r-2 bg-white/20 transition-all duration-300"
+					class="h-full rounded-sm bg-neutral-200/20 transition-all duration-300"
 					style="width: {Math.round(
-						(transactions.reduce((acc, transaction) => acc + transaction.amount_cents, 0) /
-							data.transactions.reduce((acc, transaction) => acc + transaction.amount_cents, 0)) *
-							100
+						(reduceTransactions(transactions) / reduceTransactions(data.transactions)) * 100
 					)}%;"
 				>
-					<p class="text-2xl">
-						{formatCurrency(
-							transactions.reduce((acc, transaction) => acc + transaction.amount_cents, 0)
-						)}
+					<p class="text-2xl" class:text-red-500={$mode === 'dark'}>
+						{formatCurrency(reduceTransactions(transactions))}
 					</p>
 				</div>
 			</div>
