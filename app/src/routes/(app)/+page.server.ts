@@ -13,10 +13,16 @@ export const load = (async ({ locals }) => {
 
 
 export const actions = {
-    default: async () => {
+    login: async () => {
         const user = await pb.collection('_superusers').authWithPassword(SUPER_ADMIN_USER, SUPER_ADMIN_PASSWORD)
         return {
             user
+        }
+    },
+    logout: async () => {
+        pb.authStore.clear();
+        return {
+            user: null
         }
     }
 }

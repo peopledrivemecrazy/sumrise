@@ -12,12 +12,12 @@
 	<div class="flex items-center gap-2">
 		{#if user}
 			<ModeSwitcher />
-			<form method="post" class="grid" action="/api/logout">
+			<form method="post" class="grid" action="?/logout" use:enhance>
 				<button>logout</button>
 				<span class="text-xs">{user.email}</span>
 			</form>
 		{:else}
-			<form method="post" use:enhance>
+			<form method="post" use:enhance action="?/login">
 				<button>login</button>
 			</form>
 		{/if}
