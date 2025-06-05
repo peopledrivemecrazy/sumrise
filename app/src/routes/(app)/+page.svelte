@@ -2,7 +2,6 @@
 	import { formatCurrency, groupBy, reduceTransactions } from '$lib';
 	import Card from '$lib/client/components/Card.svelte';
 	import MonthPicker from '$lib/client/components/MonthPicker.svelte';
-	import { mode } from 'mode-watcher';
 	let { data } = $props();
 </script>
 
