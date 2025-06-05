@@ -50,8 +50,8 @@
 - [x] Implement SvelteKit POST API route `/api/transactions`
 - [x] Validate JSON payload (`TextBody`, `Date`)
 - [x] Connect to PocketBase using environment variable
-- [ ] Insert new `raw_emails` record with `queued` status
-- [ ] Return success or validation error responses
+- [x] Insert new `raw_emails` record with `queued` status
+- [x] Return success or validation error responses
 
 ### 3.2 GET `/api/transactions` endpoint
 
