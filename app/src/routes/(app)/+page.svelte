@@ -24,12 +24,12 @@
 				<p class="text-sm">{merchant}</p>
 
 				<div
-					class="h-full rounded-sm bg-neutral-200/20 transition-all duration-300"
+					class="h-full rounded-sm bg-gray-200 transition-all duration-300"
 					style="width: {Math.round(
 						(reduceTransactions(transactions) / reduceTransactions(data.transactions)) * 100
 					)}%;"
 				>
-					<p class="text-2xl" class:text-red-500={$mode === 'dark'}>
+					<p class="text-2xl text-teal-500">
 						{formatCurrency(reduceTransactions(transactions))}
 					</p>
 				</div>
