@@ -14,7 +14,7 @@
 	});
 </script>
 
-<main class="mx-auto max-w-screen-lg">
+<main class="mx-auto max-w-screen-lg px-4 sm:px-6">
 	<Nav user={data.user} />
 	{@render children()}
 </main>
