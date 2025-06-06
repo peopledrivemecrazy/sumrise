@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as datepicker from '@zag-js/date-picker';
 	import { useMachine, normalizeProps, portal } from '@zag-js/svelte';
-
+	let { onValueChange = $bindable() } = $props();
 	const id = 'month-picker';
 	const max = datepicker.parse(new Date());
 	const service = useMachine(datepicker.machine, {
@@ -12,19 +12,27 @@
 		max,
 		positioning: {
 			placement: 'bottom-start'
-		}
+		},
+		onValueChange,
+		view: 'month'
 	});
 	const api = $derived(datepicker.connect(service, normalizeProps));
+
+	const isMonthDisabled = (month: { label: string; value: number }, year: number) => {
+		const currentDate = new Date();
+		const currentYear = currentDate.getFullYear();
+		const currentMonth = currentDate.getMonth();
+
+		if (year > currentYear) return true;
+		if (year === currentYear && month.value - 1 > currentMonth) return true;
+		return false;
+	};
 </script>
 
 <div class="relative">
 	<div {...api.getControlProps()}>
-		<button {...api.getTriggerProps()} class="">
-			{#if api.view === 'month'}
-				{api.visibleRangeText.start}
-			{:else}
-				{api.getDecade().start} - {api.getDecade().end}
-			{/if}
+		<button {...api.getTriggerProps()} class="my-4 cursor-pointer rounded-lg border p-2">
+			{api.visibleRangeText.start}
 		</button>
 	</div>
 
@@ -62,7 +70,12 @@
 									<td {...api.getMonthTableCellProps({ ...month, columns: 4 })} class="p-1">
 										<div
 											{...api.getMonthTableCellTriggerProps({ ...month, columns: 4 })}
-											class="cursor-pointer"
+											class="rounded-lg p-2 hover:text-teal-500 {isMonthDisabled(
+												month,
+												api.visibleRange.end.year
+											)
+												? 'cursor-not-allowed opacity-50'
+												: 'cursor-pointer'}"
 										>
 											{month.label}
 										</div>
