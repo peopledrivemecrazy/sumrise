@@ -1,8 +1,8 @@
 import { pb } from '$lib/vendor/pocketbase';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import seed_data from '$lib/vendor/pocketbase/seed_raw_emails.json';
-import seed_transactions_data from '$lib/vendor/pocketbase/seed_transactions.json';
+import seed_data from '$lib/vendor/pocketbase/source_data/sample-feb-25-to-may-25.json';
+import seed_transactions_data from '$lib/vendor/pocketbase/source_data/sample-feb-25-to-may-25.json';
 
 export const GET: RequestHandler = async () => {
     try {
