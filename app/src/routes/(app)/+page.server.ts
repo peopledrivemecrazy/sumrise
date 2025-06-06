@@ -4,7 +4,13 @@ import { pb, type Transaction } from '$lib/vendor/pocketbase';
 
 export const load = (async ({ locals }) => {
     if (locals.user) {
-        const transactions = await pb.collection('transactions').getFullList<Transaction>()
+        const now = new Date();
+        const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1, 0, 0, 0, 0);
+        const lastDayOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999);
+        console.log({ firstDayOfMonth, lastDayOfMonth })
+        const transactions = await pb.collection('transactions').getFullList<Transaction>({
+            filter: `date >= '${firstDayOfMonth.toISOString()}' && date <= '${lastDayOfMonth.toISOString()}'`
+        })
         return { transactions };
     }
     return {};
@@ -24,5 +30,16 @@ export const actions = {
         return {
             user: null
         }
+    },
+    getTransactionsByMonth: async ({ request }) => {
+        const formData = await request.formData()
+        const date = formData.get('date') as string
+        const _date = new Date(date)
+        const firstDayOfMonth = new Date(_date.getFullYear(), _date.getMonth(), 1)
+        const lastDayOfMonth = new Date(_date.getFullYear(), _date.getMonth() + 1, 0, 23, 59, 59, 999)
+        const transactions = await pb.collection('transactions').getFullList<Transaction>({
+            filter: `date >= '${firstDayOfMonth.toISOString()}' && date <= '${lastDayOfMonth.toISOString()}'`
+        })
+        return { transactions }
     }
 }

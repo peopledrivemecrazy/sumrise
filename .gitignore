@@ -76,3 +76,4 @@ local.*
 pb_data/
 pocketbase/data
 .pnpm-store
+source_data
