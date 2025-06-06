@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { formatCurrency, groupBy, reduceTransactions } from '$lib';
 	import Card from '$lib/client/components/Card.svelte';
 	import MonthPicker from '$lib/client/components/MonthPicker.svelte';
