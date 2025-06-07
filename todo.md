@@ -55,57 +55,35 @@
 
 ### 3.2 GET `/api/transactions` endpoint
 
-- [ ] Implement SvelteKit GET API route `/api/transactions`
-- [ ] Support query parameters: `month`, `year`, `page`, `pageSize`
-- [ ] Query PocketBase for transactions filtered by date
-- [ ] Implement pagination logic
-- [ ] Return total count and paginated transaction list
+- [x] Implement SvelteKit GET API route `/api/transactions`
+- [x] Support query parameters: `month`, `year`, `page`, `pageSize`
+- [x] Query PocketBase for transactions filtered by date
 
 ---
 
 ## Step 4: Email Parsing Logic
 
-- [ ] Write stub `parseEmailText(text: string)` function returning dummy transaction data
-- [ ] Test stub parser with sample email text inputs
+Parsing setup is done on the email inbound processor.
 
 ---
 
-## Step 5: Email Processing Job
+## Step 5: Scheduled Processing (Cron Job)
 
-- [ ] Write `processQueuedEmails()` function that:
-  - [ ] Fetches `raw_emails` with status `queued`
-  - [ ] Parses email text using `parseEmailText`
-  - [ ] Inserts processed transaction records
-  - [ ] Updates `raw_emails` status to `processed`
-  - [ ] Handles errors, marking `failed` and incrementing `retry_count`
-- [ ] Add detailed logging for processing
-
----
-
-## Step 6: Scheduled Processing (Cron Job)
-
-- [ ] Implement PocketBase JSVM cron job running every 5 minutes
-- [ ] Cron job to:
-  - [ ] Process queued emails
-  - [ ] Retry `failed` emails with `retry_count` < 3
-  - [ ] Implement exponential backoff logic for retries
-- [ ] Update statuses and logs accordingly
+- [x] Implement PocketBase JSVM cron job running every 5 minutes
+- [x] Cron job to:
+  - [x] Process queued emails
+  - [x] Retry `failed` emails with `retry_count` < 3
+  - [x] Implement exponential backoff logic for retries
+- [x] Update statuses and logs accordingly
 
 ---
 
 ## Step 7: Frontend UI - Dashboard
 
-- [ ] Create SvelteKit page `/`
-- [ ] Implement month/year dropdown selectors
-- [ ] Fetch and display transactions filtered by selected date
-- [ ] Display summary statistics (total spend, transaction count, avg spend)
-- [ ] Implement paginated table with:
-  - [ ] Date
-  - [ ] Merchant
-  - [ ] Amount
-  - [ ] Card Type
-  - [ ] Category
-- [ ] Add pagination controls
+- [x] Create SvelteKit page `/`
+- [x] Implement month/year dropdown selectors
+- [x] Fetch and display transactions filtered by selected date
+- [x] Display summary statistics (total spend, transaction count, avg spend)
 
 ---
 
@@ -128,11 +106,8 @@
 
 ## Step 9: Groq API Integration
 
-- [ ] Replace stub parser with real Groq API call
-- [ ] Send email text to Groq API for extraction
-- [ ] Parse Groq API response to transaction model
-- [ ] Handle Groq API errors and rate limiting
-- [ ] Update processing function to use Groq parser
+- [x] Send email text to Groq API for extraction
+- [x] Add record to transactions collection
 
 ---
 
