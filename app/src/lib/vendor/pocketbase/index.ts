@@ -15,5 +15,15 @@ export type Transaction = {
     raw_email_id: string;
 }
 
+export type RawEmail = {
+    id: string;
+    status: string;
+    text_body: string;
+    received_date: string;
+    error_msg: string;
+    retry_count: number;
+    message_id: string;
+}
+
 export const logout = () => pb.authStore.clear();
 
