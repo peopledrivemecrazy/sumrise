@@ -2,6 +2,7 @@
 	import type { RawEmail } from '$lib/vendor/pocketbase';
 	import * as accordion from '@zag-js/accordion';
 	import { useMachine, normalizeProps } from '@zag-js/svelte';
+	import { slide } from 'svelte/transition';
 
 	let { list }: { list: RawEmail[] } = $props();
 
@@ -25,26 +26,32 @@
 					<span>{api.value.includes(item.id) ? '👇' : '👆'}</span>
 				</button>
 			</h3>
-			<div class="text-base" {...api.getItemContentProps({ value: item.id })}>
-				<p class="mb-1 font-medium"><strong>Text Body:</strong></p>
-				<p class="mb-2">{item.text_body}</p>
-				<p class="mb-1 font-medium">
-					<strong>Received:</strong>
-					<span class="font-normal">{item.received_date}</span>
-				</p>
-				<p class="mb-1 font-medium">
-					<strong>Error Message:</strong>
-					<span class="font-normal">{item.error_msg}</span>
-				</p>
-				<p class="mb-1 font-medium">
-					<strong>Retry Count:</strong>
-					<span class=" font-normal">{item.retry_count}</span>
-				</p>
-				<p class="mb-1 font-medium">
-					<strong>Status:</strong>
-					<span class="font-bold text-red-500">{item.status}</span>
-				</p>
-			</div>
+			{#if api.value.includes(item.id)}
+				<div
+					class="text-base"
+					{...api.getItemContentProps({ value: item.id })}
+					transition:slide={{ duration: 200 }}
+				>
+					<p class="mb-1 font-medium"><strong>Text Body:</strong></p>
+					<p class="mb-2">{item.text_body}</p>
+					<p class="mb-1 font-medium">
+						<strong>Received:</strong>
+						<span class="font-normal">{item.received_date}</span>
+					</p>
+					<p class="mb-1 font-medium">
+						<strong>Error Message:</strong>
+						<span class="font-normal">{item.error_msg}</span>
+					</p>
+					<p class="mb-1 font-medium">
+						<strong>Retry Count:</strong>
+						<span class=" font-normal">{item.retry_count}</span>
+					</p>
+					<p class="mb-1 font-medium">
+						<strong>Status:</strong>
+						<span class="font-bold text-red-500">{item.status}</span>
+					</p>
+				</div>
+			{/if}
 		</div>
 	{/each}
 </div>
