@@ -22,7 +22,7 @@
 					{...api.getItemTriggerProps({ value: item.id })}
 				>
 					<span class="font-mono" class:text-teal-500={api.value.includes(item.id)}>{item.id}</span>
-					<span>{api.value.includes(item.id) ? '🔼' : '🔽'}</span>
+					<span>{api.value.includes(item.id) ? '👇' : '👆'}</span>
 				</button>
 			</h3>
 			<div class="text-base" {...api.getItemContentProps({ value: item.id })}>
