@@ -1,4 +1,23 @@
+routerAdd("POST", "/hook", async (e) => {
+    /* 
+    // Example of request body
+    {"MessageID":"26261337-a662-eeee-907b-bebd3e25a476","Date":"Sat, 31 May 2025 00:52:04 -0400","TextBody":"Dear User,\n\nYou've recently made a purchase with your BANK Dividend Platinum Visa card\nending in NNNN for $35.31 at DOLLARAMA # 001.\nYou can sign on to your BANK Online or Mobile Banking\n to view more details about\nthis transaction.\n"}
+    */
+    const body = JSON.parse(toString(e.request.body));
+    const { MessageID, Date: _date, TextBody } = body;
 
+
+    let collection = $app.findCollectionByNameOrId("raw_emails")
+    let record = new Record(collection)
+    // Convert Unix timestamp to ISO date string
+    record.set('received_date', new Date(_date).toISOString())
+    record.set('text_body', TextBody)
+    record.set('message_id', MessageID)
+    record.set('status', 'queued')
+    $app.save(record)
+
+    return e.json(200, { success: true });
+});
 
 routerAdd("GET", "/ping", (e) => {
     return e.json(200, { message: "pong" });
@@ -51,6 +70,7 @@ cronAdd("raw_email_cron", "*/1 * * * *", () => {
     )
     if (record) {
         record.set('status', 'processing')
+        const originalDate = record.get('received_date')
         $app.save(record)
 
         try {
@@ -86,11 +106,12 @@ cronAdd("raw_email_cron", "*/1 * * * *", () => {
             const responseContent = res.json.choices[0].message.content;
             const data = JSON.parse(responseContent);
 
-            if (data.date && data.amount_cents && data.merchant_name && data.card_type && data.card_last4) {
+            if (data.amount_cents && data.merchant_name && data.card_type && data.card_last4) {
                 const collection = $app.findCollectionByNameOrId("transactions")
                 let transactionRow = new Record(collection)
                 transactionRow.set('raw_email_id', record.id)
-                transactionRow.set('date', data.date)
+                // LLMs hallucinate dates, so we use the original date
+                transactionRow.set('date', originalDate)
                 transactionRow.set('amount_cents', data.amount_cents)
                 transactionRow.set('merchant_name', data.merchant_name)
                 transactionRow.set('card_type', data.card_type)
