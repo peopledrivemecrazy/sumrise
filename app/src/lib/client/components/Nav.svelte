@@ -26,7 +26,7 @@
 			</form>
 		{:else}
 			<form method="post" use:enhance action="/?/login">
-				<button>login</button>
+				<button class="cursor-pointer">login</button>
 			</form>
 		{/if}
 	</div>
