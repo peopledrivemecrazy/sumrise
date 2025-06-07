@@ -11,8 +11,12 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Sumrise | {routes.find(([_, href]) => href === page.url.pathname)?.[0]}</title>
+</svelte:head>
 <div class="mb-4 flex items-center justify-between text-3xl">
-	<div>
+	<div class="flex items-center gap-2">
+		<img src="/favicon.png" alt="Sumrise" class="h-10" />
 		<p>Sumrise</p>
 	</div>
 	<div class="flex items-center gap-2">
@@ -28,6 +32,7 @@
 		{/if}
 	</div>
 </div>
+{#if user}
 <div class="flex justify-between">
 	<ul class="flex items-center gap-2 text-xl">
 		{#each routes as [name, href]}
@@ -39,3 +44,4 @@
 	<ModeSwitcher />
 </div>
 <hr class="my-4" />
+{/if}
