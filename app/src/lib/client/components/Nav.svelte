@@ -40,7 +40,7 @@
 				</li>
 			{/each}
 		</ul>
-		<div>
+		<div class="flex items-center gap-2">
 			<span class="text-xs">{user.email}</span>
 			<ModeSwitcher />
 		</div>
