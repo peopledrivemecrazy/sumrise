@@ -10,6 +10,34 @@
 
 ## Architecture
 
+```mermaid
+sequenceDiagram
+    participant U as You
+    participant B as Bank
+    participant G as Gmail
+    participant P as Inbound Processor
+    participant DB as PocketBase
+    participant CRON as Cron Job
+    participant GROQ as Groq API
+    participant UI as SvelteKit App
+
+    U->>B: Make a transaction
+    B->>G: Sends transaction email
+    G->>P: Forwards email to inbound processor
+    P->>DB: Saves email to raw_emails collection
+    CRON->>DB: Fetches queued emails
+    CRON->>GROQ: Sends email for parsing
+    alt Groq succeeds
+        GROQ-->>CRON: Parsed transaction data
+        CRON->>DB: Updates transaction record
+    else Groq fails or response is incorrect
+        CRON->>DB: Marks record as failed with error_msg
+        UI->>DB: Displays link to retry parsing
+    end
+    U->>UI: Views dashboard
+    UI->>DB: Fetches processed transactions
+```
+
 - **Frontend:**
 
   - SvelteKit + Tailwind CSS
