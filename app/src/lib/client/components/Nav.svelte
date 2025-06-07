@@ -21,27 +21,29 @@
 	</div>
 	<div class="flex items-center gap-2">
 		{#if user}
-			<form method="post" class="grid" action="?/logout" use:enhance>
-				<button>logout</button>
-				<span class="text-xs">{user.email}</span>
+			<form method="post" class="grid" action="/?/logout" use:enhance>
+				<button class="cursor-pointer">logout </button>
 			</form>
 		{:else}
-			<form method="post" use:enhance action="?/login">
+			<form method="post" use:enhance action="/?/login">
 				<button>login</button>
 			</form>
 		{/if}
 	</div>
 </div>
 {#if user}
-<div class="flex justify-between">
-	<ul class="flex items-center gap-2 text-xl">
-		{#each routes as [name, href]}
-			<li>
-				<a {href} class:text-teal-500={page.url.pathname === href}>{name}</a>
-			</li>
-		{/each}
-	</ul>
-	<ModeSwitcher />
-</div>
-<hr class="my-4" />
+	<div class="flex justify-between">
+		<ul class="flex items-center gap-2 text-xl">
+			{#each routes as [name, href]}
+				<li>
+					<a {href} class:text-teal-500={page.url.pathname === href}>{name}</a>
+				</li>
+			{/each}
+		</ul>
+		<div>
+			<span class="text-xs">{user.email}</span>
+			<ModeSwitcher />
+		</div>
+	</div>
+	<hr class="my-4" />
 {/if}
