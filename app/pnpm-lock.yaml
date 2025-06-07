@@ -23,6 +23,16 @@ importers:
       pocketbase:
         specifier: ^0.26.0
         version: 0.26.0
+      svelte-french-toast:
+        specifier: ^1.2.0
+        version: 1.2.0(svelte@5.33.14)
+    optionalDependencies:
+      '@rollup/rollup-linux-arm64-gnu':
+        specifier: 4.9.5
+        version: 4.9.5
+      '@rollup/rollup-linux-x64-musl':
+        specifier: 4.9.5
+        version: 4.9.5
     devDependencies:
       '@eslint/compat':
         specifier: ^1.2.9
@@ -87,13 +97,6 @@ importers:
       vite:
         specifier: ^6.3.5
         version: 6.3.5(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
-    optionalDependencies:
-      '@rollup/rollup-linux-arm64-gnu':
-        specifier: 4.9.5
-        version: 4.9.5
-      '@rollup/rollup-linux-x64-musl':
-        specifier: 4.9.5
-        version: 4.9.5
 
 packages:
 
@@ -1420,6 +1423,16 @@ packages:
       svelte:
         optional: true
 
+  svelte-french-toast@1.2.0:
+    resolution: {integrity: sha512-5PW+6RFX3xQPbR44CngYAP1Sd9oCq9P2FOox4FZffzJuZI2mHOB7q5gJBVnOiLF5y3moVGZ7u2bYt7+yPAgcEQ==}
+    peerDependencies:
+      svelte: ^3.57.0 || ^4.0.0
+
+  svelte-writable-derived@3.1.1:
+    resolution: {integrity: sha512-w4LR6/bYZEuCs7SGr+M54oipk/UQKtiMadyOhW0PTwAtJ/Ai12QS77sLngEcfBx2q4H8ZBQucc9ktSA5sUGZWw==}
+    peerDependencies:
+      svelte: ^3.2.1 || ^4.0.0-next.1 || ^5.0.0-next.94
+
   svelte@5.33.14:
     resolution: {integrity: sha512-kRlbhIlMTijbFmVDQFDeKXPLlX1/ovXwV0I162wRqQhRcygaqDIcu1d/Ese3H2uI+yt3uT8E7ndgDthQv5v5BA==}
     engines: {node: '>=18'}
@@ -2716,6 +2729,15 @@ snapshots:
       postcss-scss: 4.0.9(postcss@8.5.4)
       postcss-selector-parser: 7.1.0
     optionalDependencies:
+      svelte: 5.33.14
+
+  svelte-french-toast@1.2.0(svelte@5.33.14):
+    dependencies:
+      svelte: 5.33.14
+      svelte-writable-derived: 3.1.1(svelte@5.33.14)
+
+  svelte-writable-derived@3.1.1(svelte@5.33.14):
+    dependencies:
       svelte: 5.33.14
 
   svelte@5.33.14:

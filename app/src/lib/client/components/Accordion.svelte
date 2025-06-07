@@ -4,7 +4,7 @@
 	import { useMachine, normalizeProps } from '@zag-js/svelte';
 	import { slide } from 'svelte/transition';
 
-	let { list }: { list: RawEmail[] } = $props();
+	let { list, onclick }: { list: RawEmail[]; onclick: (id: string) => void } = $props();
 
 	const id = $props.id();
 	const service = useMachine(accordion.machine, {
@@ -50,6 +50,10 @@
 						<strong>Status:</strong>
 						<span class="font-bold text-red-500">{item.status}</span>
 					</p>
+					<button
+						class="cursor-pointer rounded-lg border p-2 text-sm"
+						onclick={() => onclick(item.id)}>Retry</button
+					>
 				</div>
 			{/if}
 		</div>
