@@ -47,7 +47,7 @@
 <div class="relative">
 	<div {...api.getControlProps()}>
 		<div class="flex items-center gap-2">
-			<button onclick={goPrevMonth} class="cursor-pointer rounded px-2 py-1"> ← </button>
+			<button onclick={goPrevMonth} class="cursor-pointer rounded px-2 py-1"> 👈 </button>
 			<button {...api.getTriggerProps()} class="my-4 cursor-pointer rounded-lg border p-2">
 				{api.visibleRangeText.start}
 			</button>
@@ -59,7 +59,7 @@
 					api.visibleRange.end.year
 				)}
 			>
-				→
+				👉
 			</button>
 		</div>
 	</div>
