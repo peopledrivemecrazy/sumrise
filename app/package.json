@@ -51,6 +51,6 @@
 		"@zag-js/svelte": "^1.14.0",
 		"mode-watcher": "0.5.1",
 		"pocketbase": "^0.26.0",
-		"svelte-french-toast": "^1.2.0"
+		"svelte-sonner": "^1.0.4"
 	}
 }

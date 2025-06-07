@@ -25,7 +25,7 @@
 	};
 </script>
 
-<Toast {message} />
+<Toast bind:message />
 {#if data.failed.length > 0}
 	<Accordion list={data.failed} onclick={retry} />
 {:else}

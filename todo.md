@@ -89,18 +89,14 @@ Parsing setup is done on the email inbound processor.
 
 ## Step 8: Frontend UI - Failed Transactions
 
-- [ ] Create SvelteKit page `/failed`
-- [ ] List failed `raw_emails` with columns:
-  - [ ] ID
-  - [ ] Received date
-  - [ ] Error message
-- [ ] Add buttons/actions:
-  - [ ] View JSON details modal
-  - [ ] Retry (reset status to `queued`)
-  - [ ] Delete record
-  - [ ] Edit category and mark as processed
-- [ ] Implement confirmation dialogs
-- [ ] Provide UI feedback for actions
+- [x] Create SvelteKit page `/failed`
+- [x] List failed `raw_emails` with columns:
+  - [x] ID
+  - [x] Received date
+  - [x] Error message
+- [x] Add buttons/actions:
+  - [x] View JSON details modal
+  - [x] Retry (reset status to `queued`)
 
 ---
 
@@ -113,11 +109,8 @@ Parsing setup is done on the email inbound processor.
 
 ## Step 10: Error Handling & UX Improvements
 
-- [ ] Improve retry logic with timestamp-based exponential backoff
-- [ ] Display clear status indicators in UI (queued, processing, failed, processed)
-- [ ] Add loading spinners and error notifications in frontend
-- [ ] Validate manual edits (category only, once-only edits)
-- [ ] Add success/failure feedback on retry and delete actions
+- [x] Improve retry logic with timestamp-based exponential backoff
+- [x] Display clear status indicators in UI (queued, processing, failed, processed)
 
 ---
 
