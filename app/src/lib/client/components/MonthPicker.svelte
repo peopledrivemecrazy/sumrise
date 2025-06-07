@@ -18,7 +18,7 @@
 	});
 	const api = $derived(datepicker.connect(service, normalizeProps));
 
-	const isMonthDisabled = (month: { label: string; value: number }, year: number) => {
+	const isMonthDisabled = (month: { value: number }, year: number) => {
 		const currentDate = new Date();
 		const currentYear = currentDate.getFullYear();
 		const currentMonth = currentDate.getMonth();
@@ -27,13 +27,41 @@
 		if (year === currentYear && month.value - 1 > currentMonth) return true;
 		return false;
 	};
+
+	const goNextMonth = () => {
+		const nextValue = (api.focusedValue as unknown as datepicker.CalendarDate).add({
+			months: 1
+		});
+		api.setValue([nextValue]);
+		api.setFocusedValue(nextValue);
+	};
+	const goPrevMonth = () => {
+		const prevValue = (api.focusedValue as unknown as datepicker.CalendarDate).subtract({
+			months: 1
+		});
+		api.setValue([prevValue]);
+		api.setFocusedValue(prevValue);
+	};
 </script>
 
 <div class="relative">
 	<div {...api.getControlProps()}>
-		<button {...api.getTriggerProps()} class="my-4 cursor-pointer rounded-lg border p-2">
-			{api.visibleRangeText.start}
-		</button>
+		<div class="flex items-center gap-2">
+			<button onclick={goPrevMonth} class="cursor-pointer rounded px-2 py-1"> ← </button>
+			<button {...api.getTriggerProps()} class="my-4 cursor-pointer rounded-lg border p-2">
+				{api.visibleRangeText.start}
+			</button>
+			<button
+				onclick={goNextMonth}
+				class="cursor-pointer rounded px-2 py-1"
+				hidden={isMonthDisabled(
+					{ value: api.visibleRange.end.month + 1 },
+					api.visibleRange.end.year
+				)}
+			>
+				→
+			</button>
+		</div>
 	</div>
 
 	<div use:portal {...api.getPositionerProps()} class="absolute z-20">
