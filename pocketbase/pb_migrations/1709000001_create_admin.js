@@ -1,4 +1,3 @@
-
 migrate((app) => {
     let superusers = app.findCollectionByNameOrId("_superusers")
 
@@ -6,13 +5,13 @@ migrate((app) => {
 
     // note: the values can be eventually loaded via $os.getenv(key)
     // or from a special local config file
-    record.set("email", "admin@sumrise.test")
-    record.set("password", "SUPER_SUPER_SUPER_ADMIN_PASSWORD_ENV")
+    record.set("email", process.env.SUPER_ADMIN_USER)
+    record.set("password", process.env.SUPER_ADMIN_PASSWORD)
 
     app.save(record)
 }, (app) => { // optional revert operation
     try {
-        let record = app.findAuthRecordByEmail("_superusers", "admin@sumrise.test")
+        let record = app.findAuthRecordByEmail("_superusers", process.env.SUPER_ADMIN_USER)
         app.delete(record)
     } catch {
         // silent errors (probably already deleted)
